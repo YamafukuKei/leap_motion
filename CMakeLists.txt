@@ -13,7 +13,7 @@ add_compile_options(-std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   camera_info_manager
-  camera_calibration_parsers 
+  camera_calibration_parsers
   geometry_msgs
   message_generation
   visualization_msgs
@@ -86,10 +86,10 @@ include_directories(
 )
 
 ## Declare a C++ library
-add_library(lmc_listener 
+add_library(lmc_listener
   src/lmc_listener.cpp
 )
-add_dependencies(lmc_listener 
+add_dependencies(lmc_listener
   ${PROJECT_NAME}_gencpp
 )
 target_link_libraries(lmc_listener
@@ -114,11 +114,11 @@ endif()
 ## The recommended prefix ensures that target names across packages don't collide
 
 # The executable node that talks to the Leap Motion controller
-add_executable( ${PROJECT_NAME}_driver_node 
+add_executable( ${PROJECT_NAME}_driver_node
   src/lmc_driver_node.cpp
 )
 add_dependencies( ${PROJECT_NAME}_driver_node
-  ${${PROJECT_NAME}_EXPORTED_TARGETS} 
+  ${${PROJECT_NAME}_EXPORTED_TARGETS}
   ${catkin_EXPORTED_TARGETS}
 )
 target_link_libraries(${PROJECT_NAME}_driver_node
@@ -128,38 +128,38 @@ target_link_libraries(${PROJECT_NAME}_driver_node
 )
 
 # Node that visualizes the data it gets from the controller
-add_executable(${PROJECT_NAME}_visualizer_node 
+add_executable(${PROJECT_NAME}_visualizer_node
   src/lmc_visualizer_node.cpp
 )
 
-add_dependencies(${PROJECT_NAME}_visualizer_node  
+add_dependencies(${PROJECT_NAME}_visualizer_node
   ${PROJECT_NAME}_gencpp
 )
-target_link_libraries(${PROJECT_NAME}_visualizer_node  
+target_link_libraries(${PROJECT_NAME}_visualizer_node
   ${catkin_LIBRARIES}
   ${LIB_LEAP}
 )
 
-# Node that publishes raw camera images. Be sure to 
+# Node that publishes raw camera images. Be sure to
 # have "Allow images" enabled in LeapControlPanel!
-add_executable(${PROJECT_NAME}_camera_node 
+add_executable(${PROJECT_NAME}_camera_node
   src/lmc_camera_node.cpp
 )
 target_link_libraries(${PROJECT_NAME}_camera_node
-  ${catkin_LIBRARIES} 
+  ${catkin_LIBRARIES}
   ${LIB_LEAP}
 )
 
 # Filter node implementing a 2nd-order Butterworth lowpass filter
-add_executable(${PROJECT_NAME}_filter_node 
+add_executable(${PROJECT_NAME}_filter_node
   src/lmc_filter_node.cpp
 )
-add_dependencies(${PROJECT_NAME}_filter_node 
-  ${${PROJECT_NAME}_EXPORTED_TARGETS} 
+add_dependencies(${PROJECT_NAME}_filter_node
+  ${${PROJECT_NAME}_EXPORTED_TARGETS}
   ${catkin_EXPORTED_TARGETS}
 )
 target_link_libraries(${PROJECT_NAME}_filter_node
-  ${catkin_LIBRARIES} 
+  ${catkin_LIBRARIES}
   ${LIB_LEAP}
 )
 
@@ -168,7 +168,7 @@ target_link_libraries(${PROJECT_NAME}_filter_node
 #                     DEPRECATED                        #
 #########################################################
 
-add_executable(leap_hands 
+add_executable(leap_hands
   src/leap_hands.cpp
 )
 target_link_libraries(leap_hands
